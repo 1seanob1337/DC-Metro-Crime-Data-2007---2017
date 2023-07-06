@@ -5,19 +5,6 @@ import matplotlib.pyplot as plt
 import json
 from pandas import json_normalize
 
-def drop_rows_with_missing_data(df):
-    """
-    Drop rows with missing data from the given dataframe.
-    
-    Args:
-        df (pandas.DataFrame): The dataframe containing missing data.
-    
-    Returns:
-        pandas.DataFrame: A new dataframe without the rows containing missing data.
-    """
-    df_without_missing = df.dropna()
-    return df_without_missing
-
 #read csv or json into data frame fucntion
 def read_file(file_path):
     """
@@ -38,16 +25,6 @@ def read_file(file_path):
     else:
         print("Error: Invalid file extension.")
         return None
-
-#example json_file_path = 'path/to/file.json'
-#example json_df = read_file(json_file_path)
-
-def merge_csv_json(df1, df2):
-    dict_1 = {row['id']: row['snippet.title'] for _, row in df2.iterrows()}
-    df1['category_id'] = df1['category_id'].astype(str)
-    df1['Cat_Title'] = df1['category_id'].map(dict_1)
-    df1['category_id'] = df1['category_id'].astype(int)
-    return df1
 
 def describe_dataframe(df):
     """
@@ -77,9 +54,7 @@ def find_missing_data(df):
         pandas.DataFrame: DataFrame summarizing missing data.
     """
     #gets rid of all rows that start with \n as they do not have any data
-    missing_v = df.isnull().sum()
-    missing_data = pd.DataFrame(missing_v, columns=['Missing or NA'])
-    missing_data = missing_data[missing_data['Missing Values'] > 0].sort_values(by='Missing Values', ascending=False)
+    missing_data = df.isnull().sum()
     return missing_data
 
 #get column and show featuers(data type)
@@ -98,24 +73,6 @@ def get_column_features(df):
     for c in df.columns:
         feats[c] = df[c].dtype 
     return feats
-
-
-#gets rid of all rows that start with \n as they do not have any data
-
-def get_rid_of_null(df):
-    """gets rid of all rows that start with \n as they do not have any data
-
-    Args:
-        df (pandas.DataFrame): DataFrame
-        
-    Returns:
-        pandas.DataFrame: DataFrame with rows removed that meet this critera
-        
-    """
-    df = df[~df['video_id'].str.startswith("\n")]
-    return df
-
-
 
 def numerics_corr_matrix(df):
     #removes non-numeric fields in order to enable correlation by key areas
