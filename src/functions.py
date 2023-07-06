@@ -5,6 +5,19 @@ import matplotlib.pyplot as plt
 import json
 from pandas import json_normalize
 
+def drop_rows_with_missing_data(df):
+    """
+    Drop rows with missing data from the given dataframe.
+    
+    Args:
+        df (pandas.DataFrame): The dataframe containing missing data.
+    
+    Returns:
+        pandas.DataFrame: A new dataframe without the rows containing missing data.
+    """
+    df_without_missing = df.dropna()
+    return df_without_missing
+
 #read csv or json into data frame fucntion
 def read_file(file_path):
     """
@@ -64,8 +77,6 @@ def find_missing_data(df):
         pandas.DataFrame: DataFrame summarizing missing data.
     """
     #gets rid of all rows that start with \n as they do not have any data
-    df = df[~df['video_id'].str.startswith("\n")]
-    
     missing_v = df.isnull().sum()
     missing_data = pd.DataFrame(missing_v, columns=['Missing or NA'])
     missing_data = missing_data[missing_data['Missing Values'] > 0].sort_values(by='Missing Values', ascending=False)
@@ -125,8 +136,19 @@ def numerics_corr_matrix(df):
     heatmap = sns.heatmap(corr, mask=mask, cmap='coolwarm', vmax=.3, center=0,
                         square=True, linewidths=.5, cbar_kws={"shrink": .5});
     return heatmap
-    
 
+def drop_rows_with_missing_data(df):
+    """
+    Drop rows with missing data from the given dataframe.
+    
+    Args:
+        df (pandas.DataFrame): The dataframe containing missing data.
+    
+    Returns:
+        pandas.DataFrame: A new dataframe without the rows containing missing data.
+    """
+    df_without_missing = df.dropna()
+    return df_without_missing
 
 if __name__ == "__main__":
     pass
