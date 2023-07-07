@@ -2,10 +2,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import json
-from pandas import json_normalize
 
-#read csv or json into data frame fucntion
+# read csv or json into data frame fucntion
 def read_file(file_path):
     """
     Read a file and return a DataFrame based on the file extension.
@@ -16,16 +14,13 @@ def read_file(file_path):
     Returns:
         pandas.DataFrame: DataFrame containing the file data.
     """
-    if file_path.endswith('.json'):
-        with open(file_path) as f:
-            d = json.load(f)
-        return json_normalize(d['items'])
-    elif file_path.endswith('.csv'):
+    if file_path.endswith('.csv'):
         return pd.read_csv(file_path)
     else:
         print("Error: Invalid file extension.")
         return None
 
+# different format for describe function
 def describe_dataframe(df):
     """
     Generate descriptive statistics for each numerical column in a Pandas DataFrame.
@@ -40,9 +35,7 @@ def describe_dataframe(df):
     output = df.describe()
     return output
 
-
-#find missing data and give some common analytics on those values 
-
+# find missing data and give some common analytics on those values 
 def find_missing_data(df):
     """
     Find missing data in a Pandas DataFrame.
@@ -57,8 +50,7 @@ def find_missing_data(df):
     missing_data = df.isnull().sum()
     return missing_data
 
-#get column and show featuers(data type)
-
+# get column and show feat(data type)
 def get_column_features(df):
     """provides column dict listing and data type for pandas dataframe
 
@@ -74,26 +66,8 @@ def get_column_features(df):
         feats[c] = df[c].dtype 
     return feats
 
-def numerics_corr_matrix(df):
-    #removes non-numeric fields in order to enable correlation by key areas
-    numerics_only = df.drop(columns=['video_id', 'title', 'channel_title', 'tags', 'thumbnail_link', 'description', 'trending_date', 'category_id'])
-    numerics_only_by_time = numerics_only.set_index('publish_time')
-    numerics_only_by_time
-    corr = numerics_only_by_time.corr()
-    
-    sns.set_theme(style="white")
-
-    # Generate a mask for the upper triangle
-    mask = np.triu(np.ones_like(corr, dtype=bool))
-
-    # Set up the matplotlib figure
-    f, ax = plt.subplots(figsize=(11, 9))
-
-    # Draw the heatmap with the mask and correct aspect ratio
-    heatmap = sns.heatmap(corr, mask=mask, cmap='coolwarm', vmax=.3, center=0,
-                        square=True, linewidths=.5, cbar_kws={"shrink": .5});
-    return heatmap
-
+# drops row with missing data, used in this case when dsitrubtion is normal/scattered 
+# low amount of rows
 def drop_rows_with_missing_data(df):
     """
     Drop rows with missing data from the given dataframe.
@@ -106,6 +80,94 @@ def drop_rows_with_missing_data(df):
     """
     df_without_missing = df.dropna()
     return df_without_missing
+
+# plot class for line, bar, heatmap, and box plot
+class Plot:
+    """Example Usage:
+        plotter = Plot()
+        plotter.line_chart(x_values, y_values, 'X', 'Y', 'Line Chart')
+        ^something like that for most of em (pending edits)
+    """
+    def __init__(self):
+        pass
+    
+    def line_chart(self, x_values, y_values, x_label, y_label, title):
+        """
+        Plot a line chart.
+
+        Args:
+        x_values (list): List of x-axis values.
+        y_values (list): List of y-axis values.
+        x_label (str): Label for the x-axis.
+        y_label (str): Label for the y-axis.
+        title (str): Title of the chart.
+
+        Returns:
+        None
+        """
+        plt.plot(x_values, y_values)
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.title(title)
+        plt.show()
+
+    def bar_chart(self, x_values, y_values, x_label, y_label, title):
+        """
+        Plot a bar chart.
+
+        Args:
+        x_values (list): List of x-axis values.
+        y_values (list): List of y-axis values.
+        x_label (str): Label for the x-axis.
+        y_label (str): Label for the y-axis.
+        title (str): Title of the chart.
+
+        Returns:
+        None
+        """
+        plt.bar(x_values, y_values)
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.title(title)
+        plt.show()
+
+    def heatmap(self, data, x_label, y_label, title):
+        """
+        Plot a heatmap.
+
+        Args:
+        data (DataFrame, poss corr matrix): Data to be plotted as a heatmap.
+        x_label (str): Label for the x-axis.
+        y_label (str): Label for the y-axis.
+        title (str): Title of the chart.
+
+        Returns:
+        None
+        """
+        sns.heatmap(data)
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.title(title)
+        plt.show()
+    
+    def boxplot(self, data, x_label, y_label, title):
+        """
+        Plot a boxplot.
+
+        Args:
+        data (DataFrame): Data to be plotted as a boxplot.
+        x_label (str): Label for the x-axis.
+        y_label (str): Label for the y-axis.
+        title (str): Title of the chart.
+
+        Returns:
+        None
+        """
+        sns.boxplot(data)
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.title(title)
+        plt.show()
 
 if __name__ == "__main__":
     pass
