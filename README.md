@@ -71,7 +71,7 @@ Student: Joel P Himes
 
 
 
-# How Long Does It Typically Take To Resolve A Homicide Case?
+# Are homicides more likely to occur with a gun or a knife?
 
 
 
