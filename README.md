@@ -8,7 +8,7 @@ Student: Joel P Himes
 
 - Is there any correlation between the time of the day and the occurrence of homicides?
 
-- How long does it typically take to resolve a homicide case (duration between opening a case and closing a case)?
+- Are homicides more likely to occur with a gun or a knife? 
 
 # Benefit of Exploratory Data Analysis
 - DC ranked in the top 10 of homicides per 100k citizens, with 22 over the last 20 years.\
