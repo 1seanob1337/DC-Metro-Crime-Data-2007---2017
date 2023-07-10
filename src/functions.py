@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib import style
 
 # read csv or json into data frame fucntion
 def read_file(file_path):
@@ -81,7 +82,7 @@ def drop_rows_with_missing_data(df):
     df_without_missing = df.dropna()
     return df_without_missing
 
-# plot class for line, bar, heatmap, and box plot
+# plot class for line, bar, heatmap, and stacked
 class Plot:
     """Example Usage:
         plotter = Plot()
@@ -91,13 +92,12 @@ class Plot:
     def __init__(self):
         pass
     
-    def line_chart(self, x_values, y_values, x_label, y_label, title):
+    def line_chart(self, series, x_label, y_label, title):
         """
         Plot a line chart.
 
         Args:
-        x_values (list): List of x-axis values.
-        y_values (list): List of y-axis values.
+        series(O): pandas series to use.
         x_label (str): Label for the x-axis.
         y_label (str): Label for the y-axis.
         title (str): Title of the chart.
@@ -105,19 +105,35 @@ class Plot:
         Returns:
         None
         """
-        plt.plot(x_values, y_values)
-        plt.xlabel(x_label)
-        plt.ylabel(y_label)
-        plt.title(title)
-        plt.show()
+        # style
+        style.use('fivethirtyeight')
 
-    def bar_chart(self, x_values, y_values, x_label, y_label, title):
+        # fig size and plot
+        plt.figure(figsize=(10, 6))
+        series.plot(kind='line', marker='o', color='orange')
+        
+        # label and title
+        plt.xlabel(x_label, color='black')
+        plt.ylabel(y_label, color='black')
+        plt.title(title, color='black')
+
+        # Set the background color to black
+        plt.gca().set_facecolor('black')
+
+        # Set the tick color to black
+        plt.xticks(series.index)
+        plt.tick_params(axis='x', colors='black')
+        plt.tick_params(axis='y', colors='black')
+        
+        #plt.show
+        plt.show()  
+
+    def bar_chart(self, series, x_label, y_label, title):
         """
         Plot a bar chart.
 
         Args:
-        x_values (list): List of x-axis values.
-        y_values (list): List of y-axis values.
+        series (O): pandas series 
         x_label (str): Label for the x-axis.
         y_label (str): Label for the y-axis.
         title (str): Title of the chart.
@@ -125,10 +141,25 @@ class Plot:
         Returns:
         None
         """
-        plt.bar(x_values, y_values)
-        plt.xlabel(x_label)
+        #style 
+        style.use('fivethirtyeight')
+        
+        # figsize and plot
+        plt.figure(figsize=(10, 6))
+        series.plot(kind='bar', color='orange')
+
+        # Set the background color to black
+        plt.gca().set_facecolor('black')
+
+        #https://www.w3schools.com/python/ref_string_format.asp
+        plt.xticks(range(len(series)), ['Ward {}'.format(int(d)) for d in series.index], rotation=45)
+
+        #add labels
         plt.ylabel(y_label)
+        plt.xlabel(x_label)
         plt.title(title)
+        
+        #show
         plt.show()
 
     def heatmap(self, data, x_label, y_label, title):
@@ -144,18 +175,20 @@ class Plot:
         Returns:
         None
         """
+        # self explaintory - easy one
+        plt.figure(figsize=(10, 6))
         sns.heatmap(data)
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
         plt.show()
     
-    def boxplot(self, data, x_label, y_label, title):
+    def stacked(self, series, x_label, y_label, title):
         """
         Plot a boxplot.
 
         Args:
-        data (DataFrame): Data to be plotted as a boxplot.
+        series: Data to be plotted.
         x_label (str): Label for the x-axis.
         y_label (str): Label for the y-axis.
         title (str): Title of the chart.
@@ -163,10 +196,25 @@ class Plot:
         Returns:
         None
         """
-        sns.boxplot(data)
+        # 
+        plt.figure(figsize=(16, 12))
+        series.plot(kind='bar', stacked=True)
+
+        # add lables and title 
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
+
+        # roatate xticks
+        plt.xticks(rotation= 45)
+
+        # Set the background color to black
+        plt.gca().set_facecolor('black')
+
+        # https://stackoverflow.com/questions/25068384/bbox-to-anchor-and-loc-in-matplotlib
+        plt.legend(title='Method', bbox_to_anchor=(1.05, 0), loc='lower left')
+
+        # show
         plt.show()
 
 if __name__ == "__main__":
