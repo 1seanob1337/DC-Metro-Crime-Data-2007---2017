@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import folium
 import matplotlib.pyplot as plt
 from matplotlib import style
+from folium.plugins import HeatMap
 
 # read csv or json into data frame fucntion
 def read_file(file_path):
@@ -103,7 +105,7 @@ class Plot:
         title (str): Title of the chart.
 
         Returns:
-        None
+        plot
         """
         # style
         style.use('fivethirtyeight')
@@ -139,7 +141,7 @@ class Plot:
         title (str): Title of the chart.
 
         Returns:
-        None
+        plot
         """
         #style 
         style.use('fivethirtyeight')
@@ -173,7 +175,7 @@ class Plot:
         title (str): Title of the chart.
 
         Returns:
-        None
+        plot
         """
         # self explaintory - easy one
         plt.figure(figsize=(10, 6))
@@ -194,7 +196,7 @@ class Plot:
         title (str): Title of the chart.
 
         Returns:
-        None
+        plot
         """
         # 
         plt.figure(figsize=(16, 12))
@@ -216,6 +218,58 @@ class Plot:
 
         # show
         plt.show()
+        
+    def folium_heat(self, data, data2, col_name, leg_title, leg_index, loc_1, loc_2):
+        """plot heatmap for data viz using folium
+        
+        Args:
+        data (O): first data frame.
+        data2 (O): second dataframe.
+        col_name (str): column name.
+        leg_title (str): legend title.
+        leg_index (int): legend index.
+        loc_1 (int): lat for legend 
+        loc_2 (int): long for legend
+
+        Returns:
+        plot 
+        """
+        # Create a map centered on Washington D.C.
+        map_homicides = folium.Map(location=[38.9072, -77.0369], zoom_start=12)
+
+        # Generate coordinates for heatmap from the filtered DataFrame
+        heat_data = data[['YBLOCK', 'XBLOCK']].values
+
+        #for legend
+        num = data2[col_name].value_counts()[leg_index]
+
+        legend_html = f'''
+                <div style="position: fixed; 
+                            bottom: 50px; left: 50px; width: 120px; height: 60px; 
+                            background-color: rgba(255, 255, 255, 0.9); z-index:9999; 
+                            font-size:14px;border-radius: 5px;
+                            ">
+                <strong>{leg_title}</strong><br>
+                Total Homicides: {num}
+                </div>
+                '''
+
+        legend_div = folium.features.DivIcon(
+        icon_size=(120, 80),
+        icon_anchor=(10, 10),
+        html=legend_html
+        )
+
+        folium.Marker(
+        location=[loc_1, loc_2],  # Adjust the location as per your preference
+        icon=legend_div,
+        ).add_to(map_homicides)
+
+        # Add the heatmap layer to the map
+        HeatMap(heat_data).add_to(map_homicides)
+
+        # Display the map
+        map_homicides   
 
 if __name__ == "__main__":
     pass
