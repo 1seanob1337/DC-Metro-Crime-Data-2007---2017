@@ -63,22 +63,41 @@ Student: Joel P Himes
 
 # Is there any correlation between the time of the day and the occurrence of homicides?
 
+Answer: Weak (at best) correlation between Time_of_Day, Homicide, and Shift.
+
+<img src="./img/Correlation_Heatmap.png">
 
 # Have homicides increased over this decade?
 
 Answer: Some policing initiatives may have worked at certain times.
 
+<img src="./img/Number_of_Homicides_by_Year_2008 _2017png.png">
+
 # Lay of the Land: 8 Wards, 7 Districts, and 57 PSAs.
 
+<img src="./img/Lay_Of_The_Land_DC.png">
 
 # Which wards or neighborhoods had the highest number of homicides?
 
+Answer: Ward 8 of Police District 7 in the Southeastern (SE) corridor. 
+
+<img src="./img/Number_of_Homicides_by_Ward.png">
 
 # Are homicides more likely to occur with a gun or a knife?
 
+Answer: Compared to other offenses, Homicides were committed roughly 75% of the time with a gun.
+
+<img src="./img/Proportion_of_Offense_by_Method.png">
 
 # Which ward & police service area has had the highest number of homicides over the last decade?
 
+Answer: Ward 8
+
+<img src="./img/Ward_Heatmap.png">
+
+Answer: PSA 604
+
+<img src="./img/PSA_Heatmap.png">
 
 # Contact Information
 
