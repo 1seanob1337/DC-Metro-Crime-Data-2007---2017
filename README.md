@@ -66,7 +66,7 @@ Link to presentation: https://docs.google.com/presentation/d/1yTNIoOccbnXvjyQK4L
 
 # Is there any correlation between the time of the day and the occurrence of homicides?
 
-Let's address our first question: Is there any correlation between the time of day and the occurrence of homicides? After analyzing the dataset, I found a weak correlation, at best, between time of day, homicides, and shift. This was the case even when favoring the 'Evening/Midnight Shift.' Therefore, we can conclude that the time of day over the last decade does not significantly impact the occurrence of homicides.
+Let's address our first question: Is there any correlation between the time of day and the occurrence of homicides? After analyzing the dataset, I found a weak correlation, at best, between time of day, homicides, and shift. This was the case even when favoring the 'Evening/Midnight Shift.' Therefore, we can conclude that the time of day over the specified decade does not significantly impact the occurrence of homicides.
 
 <img src="./img/Correlation_Heatmap.png">
 
