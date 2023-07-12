@@ -86,7 +86,7 @@ def drop_rows_with_missing_data(df):
     df_without_missing = df.dropna()
     return df_without_missing
 
-# plot class for line, bar, heatmap, and stacked
+# plot class for line, bar, heatmap, stacked, and folium.heat
 class Plot:
     """Example Usage:
         plotter = functions.Plot()
@@ -296,4 +296,17 @@ class Plot:
         # Folium class and built in legend have alot to offer as well.    
 
 if __name__ == "__main__":
+    # read_file()
+    # describe_dataframe()
+    # find_missing_data()
+    # get_column_features()
+    # drop_rows_with_missing_data()
+    
+    # p = Plot()
+    # p.line_chart()
+    # p.bar_chart()
+    # p.heatmap()
+    # p.stacked()
+    # p.folium_heat()
+    
     pass
