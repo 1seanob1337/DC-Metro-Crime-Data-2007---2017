@@ -4,6 +4,11 @@ Student: Joel P Himes
 
 Link to presentation: https://docs.google.com/presentation/d/1yTNIoOccbnXvjyQK4LZHk1jPu5XbR-Ccz35EOF-j0ek/edit?usp=sharing 
 
+## Intro
+Thanks for joining me! I am excited to present my project on DC Metro Crime Data from 2007 to 2017.\
+\
+This presentation will explore various aspects of the dc_metro_crime dataset and address several critical questions about homicides in the DC Metro area.
+
 # Project Goals
 - Is there any correlation between the time of the day and the occurrence of homicides?
 
@@ -113,6 +118,11 @@ This shows that Ward 8 had more homicides over a spread-out area during the spec
 
 # Contact Information
 
+Thank you for your attention during the presentation.\
+\
+If you have further questions or want to explore the project in more detail, please contact me. Here are my contact details:
+\
+\
 Student: Joel P Himes\
 \
 GitHub: Joel H\
