@@ -2,9 +2,7 @@
 
 Student: Joel P Himes
 
-Link to presentation: https://docs.google.com/presentation/d/1yTNIoOccbnXvjyQK4LZHk1jPu5XbR-Ccz35EOF-j0ek/edit?usp=sharing 
-
-## Intro
+## Introduction
 Thanks for joining me! I am excited to present my project on DC Metro Crime Data from 2007 to 2017.\
 \
 This presentation will explore various aspects of the dc_metro_crime dataset and address several critical questions about homicides in the DC Metro area.
@@ -128,6 +126,8 @@ Student: Joel P Himes\
 GitHub: Joel H\
 \
 Email: himejoel2107@gmail.com\
+\
+Link to presentation: https://docs.google.com/presentation/d/1yTNIoOccbnXvjyQK4LZHk1jPu5XbR-Ccz35EOF-j0ek/edit?usp=sharing \
 \
 Link to Repo: https://github.com/joelphimes/DC-Metro-Crime-Data-2007---2017 \
 \
