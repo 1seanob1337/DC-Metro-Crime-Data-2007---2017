@@ -1,8 +1,12 @@
 # DC Metro Crime Data: 2007 - 2017
 
+<img src="./img/Intro_image.JPG">
+
+Image Source:https://www.washingtonpost.com/dc-md-va/2023/03/18/dc-congress-lobby-policing-bill/ \
+\
 Student: Joel P Himes
 
-## Introduction
+# Introduction
 Thanks for joining me! I am excited to present my project on DC Metro Crime Data from 2007 to 2017.\
 \
 This presentation will explore various aspects of the dc_metro_crime dataset and address several critical questions about homicides in the DC Metro area.
