@@ -8,7 +8,7 @@ __pycache__/
 
 #data
 data/dc_crimes_add_vars.csv
-
+data/*
 # Distribution / packaging
 .Python
 build/
